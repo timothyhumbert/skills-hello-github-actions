@@ -80,7 +80,17 @@ jobs:
           git checkout main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+      name: Post welcome comment
+      on:
+        pull_request:
+          types: [opened]
+      permissions:
+        pull-requests: write
+    jobs:
+      build:
+        name: Post welcome comment
+        runs-on: ubuntu-latest
+        
       # In README.md, switch step 0 for step 1.
       - name: Update to step 1
         uses: skills/action-update-step@v2
